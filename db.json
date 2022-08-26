@@ -6,5 +6,16 @@
       "lastName": "Smith",
       "email": "you@yourdomain.com"
     }
+  ],
+  "vendors": [
+    {
+      "id": 1,
+      "name": "Pepsi",
+      "url": "https://www.pepsico.com/",
+      "description": "short vendor description here",
+      "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ",
+      "category": "soda",
+      "promo": false
+    }
   ]
 }
