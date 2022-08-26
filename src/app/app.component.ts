@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { logout, login } from './auth/state/actions/auth.actions';
 import { authSelectors } from './auth/state/selectors';
-import { AppState } from './reducers';
+import { AppState } from './state/reducers';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,6 @@ import { AppState } from './reducers';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription = new Subscription();
-
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
 
@@ -25,20 +23,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.isLoggedIn$ = this.store.pipe(select(authSelectors.isLoggedIn));
     this.isLoggedOut$ = this.store.pipe(select(authSelectors.isLoggedOut));
-
-    // this.subscriptions.add(authSubscription);
   }
 
   logOut(): void {
     this.store.dispatch(logout());
   }
 
-  ngOnDestroy(): void {
-    // console.log('destroying login component');
-    // if (this.subscriptions) {
-    //   console.log('this.subscriptions:', this.subscriptions);
-    //   this.subscriptions.unsubscribe();
-    //   console.log('unsubscribed to array of subscriptions');
-    // }
-  }
+  ngOnDestroy(): void {}
 }
