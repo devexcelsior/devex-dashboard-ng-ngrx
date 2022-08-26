@@ -1,0 +1,7 @@
+@import "./scss/header";
+
+:host {
+  --tgds-logo-color: #e4e4e4;
+  --tgds-login-btn-color: blue;
+  --tgds-logout-btn-color: red;
+}

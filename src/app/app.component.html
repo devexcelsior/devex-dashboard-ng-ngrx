@@ -1,0 +1,10 @@
+<div id="tgds-header">
+  <div class="logo"></div>
+  <div class="actions">
+    <div *ngIf="isLoggedOut$ | async" class="actions-login"><button>Login</button></div>
+    <div *ngIf="isLoggedIn$ | async" class="actions-logout"><button (click)="logOut()">Logout</button></div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<br>
+Add footer<br>

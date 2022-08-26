@@ -1,0 +1,27 @@
+#tgds-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 80px;
+
+  .logo {
+    min-width: 100px;
+    min-height: 40px;
+    background-color: var(--tgds-logo-color);
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    &-login {
+      min-width: 100px;
+      min-height: 40px;
+      //   background-color: var(--tgds-login-btn-color);
+    }
+    &-logout {
+      min-width: 100px;
+      min-height: 40px;
+      //   background-color: var(--tgds-logout-btn-color);
+    }
+  }
+}
