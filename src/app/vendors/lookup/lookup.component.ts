@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Vendor } from '../model/vendor.model';
 
 @Component({
   selector: 'app-lookup',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lookup.component.scss'],
 })
 export class LookupComponent implements OnInit {
+  vendors: Vendor[];
+
   constructor() {}
 
   ngOnInit(): void {}

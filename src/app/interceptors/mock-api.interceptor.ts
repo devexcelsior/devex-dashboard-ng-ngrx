@@ -38,7 +38,7 @@ export class MockApiInterceptor implements HttpInterceptor {
     if (url.endsWith('/api/vendors') && method === 'GET') {
       const mockVendors = [
         {
-          id: 1,
+          id: 0,
           name: 'Pepsi',
           url: 'https://www.pepsico.com/',
           description: 'short vendor description here',
@@ -46,6 +46,26 @@ export class MockApiInterceptor implements HttpInterceptor {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ',
           category: 'soda',
           promo: false,
+        },
+        {
+          id: 1,
+          name: 'Facebook',
+          url: 'https://facebook.com/',
+          description: 'short vendor description here',
+          longDescription:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ',
+          category: 'tech',
+          promo: true,
+        },
+        {
+          id: 2,
+          name: 'Green Syste,s',
+          url: 'https://google.com/',
+          description: 'short vendor description here',
+          longDescription:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ',
+          category: 'tech',
+          promo: true,
         },
       ];
 
