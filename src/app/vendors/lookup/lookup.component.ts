@@ -3,7 +3,6 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/state/reducers';
 import { Vendor } from '../model/vendor.model';
-import { VendorState } from '../state/reducers';
 import { selectVendors } from '../state/selectors/vendor.selectors';
 
 @Component({
@@ -14,7 +13,7 @@ import { selectVendors } from '../state/selectors/vendor.selectors';
 export class LookupComponent implements OnInit {
   allVendors$: Observable<Vendor[]>;
 
-  constructor(private store: Store<VendorState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.reload();

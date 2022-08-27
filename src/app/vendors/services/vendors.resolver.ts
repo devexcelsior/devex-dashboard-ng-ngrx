@@ -23,12 +23,13 @@ export class VendorsResolver implements Resolve<any> {
   ): Observable<any> {
     return this.store.pipe(
       select(areVendorsLoaded),
-      tap(() => {
-        if (!this.loading) {
+      tap((vendorsLoaded) => {
+        if (!this.loading && !vendorsLoaded) {
           this.loading = true;
           this.store.dispatch(VendorActions.loadAllVendors());
         }
       }),
+      filter((coursesLoaded) => coursesLoaded),
       first(),
       finalize(() => (this.loading = false))
     );
