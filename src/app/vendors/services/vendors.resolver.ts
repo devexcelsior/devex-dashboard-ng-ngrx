@@ -29,7 +29,7 @@ export class VendorsResolver implements Resolve<any> {
           this.store.dispatch(VendorActions.loadAllVendors());
         }
       }),
-      filter((coursesLoaded) => coursesLoaded),
+      filter((vendorsLoaded) => vendorsLoaded),
       first(),
       finalize(() => (this.loading = false))
     );
