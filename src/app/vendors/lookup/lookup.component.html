@@ -1,1 +1,5 @@
-<p>lookup works!</p>
+<ul>
+    <li *ngFor="let vendor of allVendors$ | async; index as i">
+        {{ i + 1 }}. {{ vendor.name }}
+    </li>
+</ul>

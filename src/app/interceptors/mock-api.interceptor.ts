@@ -59,7 +59,7 @@ export class MockApiInterceptor implements HttpInterceptor {
         },
         {
           id: 2,
-          name: 'Green Syste,s',
+          name: 'Green Company',
           url: 'https://google.com/',
           description: 'short vendor description here',
           longDescription:

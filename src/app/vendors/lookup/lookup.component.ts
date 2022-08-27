@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/state/reducers';
 import { Vendor } from '../model/vendor.model';
+import { VendorState } from '../state/reducers';
+import { selectVendors } from '../state/selectors/vendor.selectors';
 
 @Component({
   selector: 'app-lookup',
@@ -7,9 +12,19 @@ import { Vendor } from '../model/vendor.model';
   styleUrls: ['./lookup.component.scss'],
 })
 export class LookupComponent implements OnInit {
-  vendors: Vendor[];
+  allVendors$: Observable<Vendor[]>;
 
-  constructor() {}
+  constructor(private store: Store<VendorState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reload();
+  }
+
+  reload() {
+    this.allVendors$ = this.store.pipe(select(selectVendors));
+
+    this.allVendors$.subscribe((data) => {
+      console.log('data:', data);
+    });
+  }
 }
