@@ -3,13 +3,18 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vendor } from '../model/vendor.model';
 import { map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VendorsHttpService {
+  private endpoint = `${environment.apiUrl}`;
+
   constructor(private http: HttpClient) {}
 
   findAllVendors(): Observable<Vendor[]> {
-    return this.http.get('/api/vendors').pipe(map((res: any) => res));
+    return this.http
+      .get(`${this.endpoint}/vendors`)
+      .pipe(map((res: any) => res));
   }
 
   findVendorByUrl(vendorUrl: string): Observable<Vendor> {

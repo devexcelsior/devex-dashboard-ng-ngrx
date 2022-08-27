@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "server": "json-server --watch db.json"
+    "server": "json-server-auth db.json"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +35,8 @@
     "@ngrx/schematics": "^14.2.0",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.2.0",
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
