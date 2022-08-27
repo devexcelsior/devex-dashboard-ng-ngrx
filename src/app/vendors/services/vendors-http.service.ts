@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vendor } from '../model/vendor.model';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class VendorsHttpService {
   constructor(private http: HttpClient) {}
 
   findAllVendors(): Observable<Vendor[]> {
-    return this.http
-      .get('/api/vendors')
-      .pipe(map((res: any) => res['payload']));
+    return this.http.get('/api/vendors').pipe(map((res: any) => res));
   }
 
   findVendorByUrl(vendorUrl: string): Observable<Vendor> {

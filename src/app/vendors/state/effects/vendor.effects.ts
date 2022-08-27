@@ -16,8 +16,7 @@ export class VendorsEffects {
     this.actions$.pipe(
       ofType(VendorActions.loadAllVendors),
       concatMap((action) => this.vendorsHttpService.findAllVendors()),
-      tap((vendors) => console.log('vendors:', vendors)),
-      map((vendors) => allVendorsLoaded({ vendors: vendors }))
+      map((vendors) => allVendorsLoaded({ vendors }))
     )
   );
 

@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Vendor } from '../../model/vendor.model';
 import { Update } from '@ngrx/entity';
-import { UpdateStr } from '@ngrx/entity/src/models';
 
 export const loadAllVendors = createAction(
   '[Vendors Resolver] Load All Vendors'

@@ -36,24 +36,22 @@ export class MockApiInterceptor implements HttpInterceptor {
     }
 
     if (url.endsWith('/api/vendors') && method === 'GET') {
-      const mockVendors = {
-        payload: [
-          {
-            id: 1,
-            name: 'Pepsi',
-            url: 'https://www.pepsico.com/',
-            description: 'short vendor description here',
-            longDescription:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ',
-            category: 'soda',
-            promo: false,
-          },
-        ],
-      };
+      const mockVendors = [
+        {
+          id: 1,
+          name: 'Pepsi',
+          url: 'https://www.pepsico.com/',
+          description: 'short vendor description here',
+          longDescription:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis tristique nisi, eu tempus tellus. Pellentesque sed ipsum vitae metus suscipit eleifend bibendum a mi. ',
+          category: 'soda',
+          promo: false,
+        },
+      ];
 
-      return of(
-        new HttpResponse({ status: 200, body: JSON.stringify(mockVendors) })
-      ).pipe(delay(500));
+      return of(new HttpResponse({ status: 200, body: mockVendors })).pipe(
+        delay(500)
+      );
     }
 
     // if there is not any matches return default request.
