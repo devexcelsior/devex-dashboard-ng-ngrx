@@ -17,12 +17,24 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  setToken$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.setToken),
+        tap((action) => {
+          localStorage.setItem('accessToken', action.accessToken);
+        })
+      ),
+    { dispatch: false }
+  );
+
   logout$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
         tap((action) => {
           localStorage.removeItem('user');
+          localStorage.removeItem('accessToken');
           this.router.navigateByUrl('/login');
         })
       ),

@@ -1,23 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { login } from '../state/actions/auth.actions';
-
+import { login, setToken } from '../state/actions/auth.actions';
 import { Router } from '@angular/router';
 import { AuthState } from '../state/reducers';
 import { AuthService } from '../auth.service';
 import { tap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
+@UntilDestroy()
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   form: FormGroup;
-  subscriptions = new Subscription();
 
   constructor(
     private fb: FormBuilder,
@@ -47,34 +45,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     const val = this.form.value;
 
-    const connect = this.auth.login(val.email, val.password).pipe(
-      tap((user) => {
-        this.store.dispatch(login({ user: user }));
-        this.router.navigateByUrl('/vendors');
-      })
-    );
-
-    const subscription = connect.subscribe({
-      next: (event) => {
-        console.log('next:', event);
-      },
-      error: (error) => {
-        console.log('error', error);
-      },
-      complete: () => {
-        console.log('complete!');
-      },
-    });
-
-    this.subscriptions.add(subscription);
-  }
-
-  ngOnDestroy(): void {
-    console.log('destroying login component');
-    if (this.subscriptions) {
-      console.log('this.subscriptions:', this.subscriptions);
-      this.subscriptions.unsubscribe();
-      console.log('unsubscribed to array of subscriptions');
-    }
+    this.auth
+      .login(val.email, val.password)
+      .pipe(
+        untilDestroyed(this),
+        tap((res) => {
+          this.store.dispatch(login({ user: res.user }));
+          this.store.dispatch(setToken({ accessToken: res.accessToken }));
+        })
+      )
+      .subscribe({
+        next: (n) => this.router.navigateByUrl('/vendors'),
+        error: (e) => console.log('handle error:', e.error),
+      });
   }
 }

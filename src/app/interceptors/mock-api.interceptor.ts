@@ -13,15 +13,24 @@ export class MockApiInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return this.handleRequests(req, next);
-  }
+    const token = localStorage.getItem('accessToken');
 
-  handleRequests(req: HttpRequest<any>, next: HttpHandler): any {
-    const { url, method } = req;
+    const requestObject = {
+      setHeaders: {
+        Accept: 'application/json',
+        'Accept-Version': '<=1.0.0',
+        Authorization: '',
+      },
+    };
 
-    return next.handle(req);
+    if (token) {
+      requestObject.setHeaders['Authorization'] = `Bearer ${token}`;
+    }
+
+    request = request.clone(requestObject);
+    return next.handle(request);
   }
 }

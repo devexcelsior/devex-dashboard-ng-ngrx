@@ -18,7 +18,7 @@ export class VendorsHttpService {
   }
 
   findVendorByUrl(vendorUrl: string): Observable<Vendor> {
-    return this.http.get<Vendor>(`/api/vendors/${vendorUrl}`);
+    return this.http.get<Vendor>(`${this.endpoint}/vendors/${vendorUrl}`);
   }
 
   //   findVendors(
@@ -36,6 +36,6 @@ export class VendorsHttpService {
   //   }
 
   saveVendor(vendorId: string | number, changes: Partial<Vendor>) {
-    return this.http.put('/api/vendor/' + vendorId, changes);
+    return this.http.put(`${this.endpoint}/vendors/${vendorId}`, changes);
   }
 }
