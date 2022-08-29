@@ -46,13 +46,14 @@ export class AuthGuard implements CanActivate {
       }
     }
 
-    return this.store.pipe(
-      select(authSelectors.isLoggedIn),
-      tap((loggedIn) => {
-        if (!loggedIn) {
-          this.router.navigateByUrl('/login');
-        }
-      })
-    );
+    return of(true);
+    // return this.store.pipe(
+    //   select(authSelectors.isLoggedIn),
+    //   tap((loggedIn) => {
+    //     if (!loggedIn) {
+    //       this.router.navigateByUrl('/login');
+    //     }
+    //   })
+    // );
   }
 }

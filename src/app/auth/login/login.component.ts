@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { login, setToken } from '../state/actions/auth.actions';
+// import { login, setToken } from '../state/actions/auth.actions';
 import { Router } from '@angular/router';
 import { AuthState } from '../state/reducers';
 import { AuthService } from '../auth.service';
@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
       .pipe(
         untilDestroyed(this),
         tap((res) => {
-          this.store.dispatch(login({ user: res.user }));
-          this.store.dispatch(setToken({ accessToken: res.accessToken }));
+          // this.store.dispatch(login({ user: res.user }));
+          // this.store.dispatch(setToken({ accessToken: res.accessToken }));
         })
       )
       .subscribe({
