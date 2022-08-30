@@ -7,13 +7,11 @@ export const key = 'auth';
 export interface AuthState {
   user: User | undefined;
   accessToken: string | undefined;
-  tokenValid: boolean;
 }
 
 export const initialAuthState: AuthState = {
   user: undefined,
   accessToken: undefined,
-  tokenValid: false,
 };
 
 export const reducer = createReducer(
