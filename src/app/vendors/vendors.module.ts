@@ -9,8 +9,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { VendorsEffects } from './state/effects/vendor.effects';
 import { VendorsHttpService } from './services/vendors-http.service';
 import { VendorsResolver } from './services/vendors.resolver';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MockApiInterceptor } from '../interceptors/mock-api.interceptor';
 
 @NgModule({
   declarations: [LookupComponent],
@@ -23,10 +21,6 @@ import { MockApiInterceptor } from '../interceptors/mock-api.interceptor';
       fromVendors.vendorsReducer
     ),
   ],
-  providers: [
-    VendorsResolver,
-    VendorsHttpService,
-    { provide: HTTP_INTERCEPTORS, useClass: MockApiInterceptor, multi: true },
-  ],
+  providers: [VendorsResolver, VendorsHttpService],
 })
 export class VendorsModule {}

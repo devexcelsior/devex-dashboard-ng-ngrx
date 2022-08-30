@@ -20,9 +20,16 @@ export const initialVendorsState = adapter.getInitialState({
 export const vendorsReducer = createReducer(
   initialVendorsState,
 
-  on(VendorActions.allVendorsLoaded, (state, action) =>
+  on(VendorActions.allVendorsLoadSuccess, (state, action) =>
     adapter.setAll(action.vendors, { ...state, allVendorsLoaded: true })
   ),
+
+  on(VendorActions.allVendorsLoadFailure, (state, action) => {
+    return {
+      ...state,
+      allVendorsLoaded: false,
+    };
+  }),
 
   on(VendorActions.vendorUpdated, (state, action) =>
     adapter.updateOne(action.update, state)

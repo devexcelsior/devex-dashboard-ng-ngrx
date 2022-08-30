@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
-  HttpResponse,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable, delay, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable()
-export class MockApiInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(

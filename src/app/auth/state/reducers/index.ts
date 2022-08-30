@@ -30,30 +30,6 @@ export const reducer = createReducer(
       accessToken: action.accessToken,
     };
   }),
-  on(AuthActions.validateToken, (state, action) => {
-    // const accessToken = action.accessToken;
-    // const decoded = jwtDecode<JwtPayload>(token);
-    // if (!decoded) {
-    //   console.log('token cannot be decoded');
-    //   this.router.navigateByUrl('/login');
-    //   return of(false);
-    // }
-
-    // console.log('token_decoded:', decoded);
-
-    // let now = new Date().getTime();
-    // now = (now - (now % 1000)) / 1000;
-
-    // if (decoded && decoded.exp) {
-    //   if (now < decoded.exp) {
-    //     // Token has not expired
-    //   }
-    // }
-
-    return {
-      ...state,
-    };
-  }),
   on(AuthActions.logout, (state, action) => {
     return {
       ...state,
